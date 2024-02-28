@@ -1,0 +1,11 @@
+version: '3.9'
+services:
+  custom-n8n:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - N8N_VERSION=latest
+    ports:
+      - '5678:5678'
+    # command: ["tini", "--", "/docker-entrypoint.sh"]

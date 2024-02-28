@@ -1,19 +1,19 @@
 {
-  "name": "n8n-nodes-<...>",
+  "name": "n8n-custom-node",
   "version": "0.1.0",
-  "description": "",
+  "description": "Custom Node for instalation test",
   "keywords": [
     "n8n-community-node-package"
   ],
   "license": "MIT",
   "homepage": "",
   "author": {
-    "name": "",
-    "email": ""
+    "name": "Bagus Oktaviad",
+    "email": "bagusoktaviadi1@gmail.com"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/<...>/n8n-nodes-<...>.git"
+    "url": "https://github.com/blanc08/n8n-custom-node.git"
   },
   "main": "index.js",
   "scripts": {
