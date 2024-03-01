@@ -41,10 +41,11 @@ COPY docker-entrypoint.sh /docker-entrypoint.sh
 COPY . .
 RUN npm i && \
     npm run build && \
-    mv dist/ /root/.n8n/custom  && \
-    mkdir -p /root/.n8n/custom
+    mkdir -p /root/.n8n/custom && \
+    mv /data/dist/* /root/.n8n/custom    
 
-RUN  cd  /root/.n8n/custom/ && \
+
+RUN cd  /root/.n8n/custom/ && \
     npm link
 
 RUN ["chmod", "+x", "/docker-entrypoint.sh"]
