@@ -9,7 +9,7 @@ import { versionDescription } from './actions/versionDescription';
 import { loadOptions } from './methods';
 import { router } from './actions/router';
 
-export class SalesforceV1 implements INodeType {
+export class CustomSalesforceV1 implements INodeType {
 	description: INodeTypeDescription;
 
 	constructor(baseDescription: INodeTypeBaseDescription) {

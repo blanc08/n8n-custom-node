@@ -34,19 +34,25 @@ RUN apk --no-cache add --virtual fonts msttcorefonts-installer fontconfig && \
 
 ENV NODE_ICU_DATA /usr/local/lib/node_modules/full-icu
 
-WORKDIR /data
-
-COPY docker-entrypoint.sh /docker-entrypoint.sh
-
+# built custom nodes
+WORKDIR /raw-nodes
 COPY . .
 RUN npm i && \
     npm run build && \
-    mkdir -p /root/.n8n/custom && \
-    mv /data/dist/* /root/.n8n/custom    
+    mv dist /nodes
+    
+# perlukah?
+# mkdir -p /nodes && \
 
+WORKDIR /nodes
+RUN npm link
 
-RUN cd  /root/.n8n/custom/ && \
-    npm link
+RUN mkdir -p /root/.n8n/custom && \
+    cd /root/.n8n/custom && \
+    npm link n8n-custom-node
+
+# Copy the start script
+COPY docker-entrypoint.sh /docker-entrypoint.sh
 
 RUN ["chmod", "+x", "/docker-entrypoint.sh"]
 ENTRYPOINT ["tini", "--", "/docker-entrypoint.sh"]

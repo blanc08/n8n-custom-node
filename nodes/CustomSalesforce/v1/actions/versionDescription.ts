@@ -3,22 +3,36 @@ import type { INodeTypeDescription } from 'n8n-workflow';
 import * as user from './user';
 
 export const versionDescription: INodeTypeDescription = {
-	displayName: 'Mattermost',
-	name: 'mattermost',
+	displayName: 'Custom Salesforce',
+	name: 'CustomSalesforce',
 	icon: 'file:mattermost.svg',
 	group: ['output'],
 	version: 1,
 	subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
-	description: 'Sends data to Mattermost',
+	description: 'Sends data to Salesforce',
 	defaults: {
-		name: 'Mattermost',
+		name: 'CustomSalesforce',
 	},
 	inputs: ['main'],
 	outputs: ['main'],
 	credentials: [
 		{
-			name: 'mattermostApi',
+			name: 'customSalesforceOAuth2Api',
 			required: true,
+			displayOptions: {
+				show: {
+					authentication: ['oAuth2'],
+				},
+			},
+		},
+		{
+			name: 'customSalesforceJwtApi',
+			required: true,
+			displayOptions: {
+				show: {
+					authentication: ['jwt'],
+				},
+			},
 		},
 	],
 	properties: [

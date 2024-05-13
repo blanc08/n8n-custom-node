@@ -1,13 +1,14 @@
 import type { INodeTypeBaseDescription, IVersionedNodeType } from 'n8n-workflow';
 import { VersionedNodeType } from 'n8n-workflow';
-import { SalesforceV1 } from './v1/SalesforceV1.node';
+import { CustomSalesforceV1 } from './v1/CustomSalesforceV1.node';
+import { CustomSalesforceV2 } from './v2/CustomSalesforceV2.node';
 
-export class Salesforce extends VersionedNodeType {
+export class CustomSalesforce extends VersionedNodeType {
 	constructor() {
 		const baseDescription: INodeTypeBaseDescription = {
-			displayName: 'Salesforce',
-			name: 'Salesforce',
-			icon: 'file:mattermost.svg',
+			displayName: 'Custom Salesforce',
+			name: 'CustomSalesforce',
+			icon: 'file:salesforce.svg',
 			group: ['output'],
 			subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
 			description: 'Salesforce',
@@ -15,7 +16,8 @@ export class Salesforce extends VersionedNodeType {
 		};
 
 		const nodeVersions: IVersionedNodeType['nodeVersions'] = {
-			1: new SalesforceV1(baseDescription),
+			1: new CustomSalesforceV1(baseDescription),
+			2: new CustomSalesforceV2(baseDescription),
 		};
 
 		super(nodeVersions, baseDescription);
