@@ -120,7 +120,7 @@ export async function salesforceApiRequest(
 			return await this.helpers.request(options);
 		} else {
 			// https://help.salesforce.com/articleView?id=remoteaccess_oauth_web_server_flow.htm&type=5
-			const credentialsType = 'salesforceOAuth2Api';
+			const credentialsType = 'customSalesforceOAuth2Api';
 			const credentials = (await this.getCredentials(credentialsType)) as {
 				oauthTokenData: { instance_url: string };
 			};
