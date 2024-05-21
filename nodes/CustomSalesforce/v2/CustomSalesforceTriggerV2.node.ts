@@ -7,7 +7,7 @@ import type {
 	INodePropertyOptions,
 } from 'n8n-workflow';
 
-import { salesforceApiRequest, sortOptions } from './GenericFunctions';
+import { salesforceApiRequest, sortOptions } from './utils/GenericFunctions';
 import { router } from './triggers/router';
 
 export class CustomSalesforceTriggerV2 implements INodeType {

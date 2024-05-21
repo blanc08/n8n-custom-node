@@ -12,25 +12,31 @@ import type {
 } from 'n8n-workflow';
 import { NodeApiError, NodeOperationError } from 'n8n-workflow';
 
-import { accountFields, accountOperations } from './AccountDescription';
+import { accountFields, accountOperations } from './actions/account/AccountDescription';
 
-import type { IAccount } from './AccountInterface';
+import type { IAccount } from './interfaces/AccountInterface';
 
 import {
 	getQuery,
 	salesforceApiRequest,
 	salesforceApiRequestAllItems,
 	sortOptions,
-} from './GenericFunctions';
+} from './utils/GenericFunctions';
 
-import { attachmentFields, attachmentOperations } from './AttachmentDescription';
-import { customObjectFields, customObjectOperations } from './CustomObjectDescription';
-import { opportunityFields, opportunityOperations } from './OpportunityDescription';
-import { searchFields, searchOperations } from './SearchDescription';
-import { userFields, userOperations } from './UserDescription';
-import { IAttachment } from './AttachmentInterface';
-import { IOpportunity } from './OpportunityInterface';
-import { INote } from './NoteInterface';
+import { attachmentFields, attachmentOperations } from './actions/attachment/AttachmentDescription';
+import {
+	customObjectFields,
+	customObjectOperations,
+} from './actions/custom-object/CustomObjectDescription';
+import {
+	opportunityFields,
+	opportunityOperations,
+} from './actions/opportunity/OpportunityDescription';
+import { searchFields, searchOperations } from './actions/search/SearchDescription';
+import { userFields, userOperations } from './actions/user/UserDescription';
+import { IAttachment } from './interfaces/AttachmentInterface';
+import { IOpportunity } from './interfaces/OpportunityInterface';
+import { INote } from './interfaces/NoteInterface';
 
 export class CustomSalesforceV2 implements INodeType {
 	description: INodeTypeDescription = {

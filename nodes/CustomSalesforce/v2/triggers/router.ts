@@ -6,7 +6,8 @@ import {
 	JsonObject,
 	NodeApiError,
 } from 'n8n-workflow';
-import { getQuery, salesforceApiRequestAllItems } from '../GenericFunctions';
+import { getQuery, salesforceApiRequestAllItems } from '../utils/GenericFunctions';
+import { LoggerProxy as Logger } from 'n8n-workflow';
 
 export async function router(this: IPollFunctions): Promise<INodeExecutionData[][] | null> {
 	const workflowData = this.getWorkflowStaticData('node');
@@ -93,14 +94,14 @@ export async function router(this: IPollFunctions): Promise<INodeExecutionData[]
 		// const workflow = this.getWorkflow();
 		// const node = this.getNode();
 
-		// this.logger.error(
-		// 	`There was a problem in '${node.name}' node in workflow '${workflow.id}': '${error.description}'`,
-		// 	{
-		// 		node: node.name,
-		// 		workflowId: workflow.id,
-		// 		error,
-		// 	},
-		// );
+		Logger.error(
+			`There was a problem in '${workflowData.name}' node in workflow '${workflowData.id}': '${error.description}'`,
+			{
+				node: workflowData.name,
+				workflowId: workflowData.id,
+				error,
+			},
+		);
 
 		throw error;
 	}
