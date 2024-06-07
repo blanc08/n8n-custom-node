@@ -5,8 +5,8 @@ import type {
 	INodeTypeDescription,
 	ILoadOptionsFunctions,
 	INodePropertyOptions,
+	INodeTypeBaseDescription
 } from 'n8n-workflow';
-
 import { salesforceApiRequest, sortOptions } from './utils/GenericFunctions';
 import { router } from './triggers/router';
 
@@ -151,6 +151,13 @@ export class CustomSalesforceTriggerV2 implements INodeType {
 			},
 		],
 	};
+
+	constructor(baseDescription: INodeTypeBaseDescription) {
+		this.description = {
+			...baseDescription,
+			...this.description,
+		};
+	}
 
 	methods = {
 		loadOptions: {

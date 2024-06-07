@@ -5,9 +5,9 @@ import {
 	IPollFunctions,
 	JsonObject,
 	NodeApiError,
+	LoggerProxy as Logger,
 } from 'n8n-workflow';
 import { getQuery, salesforceApiRequestAllItems } from '../utils/GenericFunctions';
-import { LoggerProxy as Logger } from 'n8n-workflow';
 
 export async function router(this: IPollFunctions): Promise<INodeExecutionData[][] | null> {
 	const workflowData = this.getWorkflowStaticData('node');
@@ -16,6 +16,11 @@ export async function router(this: IPollFunctions): Promise<INodeExecutionData[]
 	const triggerOn = this.getNodeParameter('triggerOn') as string;
 	let triggerResource = triggerOn.slice(0, 1).toUpperCase() + triggerOn.slice(1, -7);
 	const changeType = triggerOn.slice(-7);
+
+	Logger.error(`processing salesforce trigger ${JSON.stringify(workflowData)}`, {
+		node: workflowData.name,
+		workflowId: workflowData.id,
+	});
 
 	if (triggerResource === 'CustomObject') {
 		triggerResource = this.getNodeParameter('customObject') as string;
