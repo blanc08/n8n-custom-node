@@ -6,5 +6,5 @@ services:
       args:
         - N8N_VERSION=latest
     ports:
-      - '5678:5678'
+      - '80:5678'
     # command: ["tini", "--", "/docker-entrypoint.sh"]
